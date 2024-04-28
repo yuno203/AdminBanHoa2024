@@ -1,9 +1,9 @@
 interface UserType {
     id: string;
     tenKH: string;
-    gioiTinh: string;
+    gioiTinh: boolean;
     diaChi: string;
-    sdt: number;
+    sdt: string;
     email: string;
 }
 

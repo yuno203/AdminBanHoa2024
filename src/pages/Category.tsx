@@ -8,10 +8,12 @@ import { Upload, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import ProductModel from "../components/ProductModel";
 import ProductModelDelete from "../components/ProductModelDelete";
+import CategoryModel from "../components/CategoryModel";
+import CategoryModelDelete from "../components/CategoryModelDelete";
 
 
 const Category: React.FC = () => {
-  const [productid, setProductid] = useState("");
+  const [categoryid, setCategoryid] = useState("");
   const [isOpenIUModal, setIsOpenIUModal] = useState(false);
   const [isOpenDeleteModal, setisOpenDeleteModal] = useState(false);
   const [data, setData] = useState<CategoryType[]>();
@@ -72,12 +74,12 @@ const Category: React.FC = () => {
           width: "120px",
           render: (_, record) => (
             <Flex justify="center" >
-              <Button onClick= {()=> {setIsOpenIUModal(true);setProductid(record.maChuyenMuc)}} 
+              <Button onClick= {()=> {setIsOpenIUModal(true);setCategoryid(record.maChuyenMuc)}} 
               >
                 Sửa
               </Button >  
               <Button style={{marginLeft:'5px'}}
-              onClick={() => {setisOpenDeleteModal(true); setProductid(record.maChuyenMuc)}}
+              onClick={() => {setisOpenDeleteModal(true); setCategoryid(record.maChuyenMuc)}}
               >
                 Xóa
               </Button>
@@ -117,7 +119,7 @@ const Category: React.FC = () => {
               <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
               <Breadcrumb.Item>Quản lý sản phẩm</Breadcrumb.Item>
             </Breadcrumb>
-            <Button type="primary" onClick={() => {setIsOpenIUModal(true); setProductid("")}}>
+            <Button type="primary" onClick={() => {setIsOpenIUModal(true); setCategoryid("")}}>
             Thêm Mới
           </Button >
         
@@ -130,11 +132,11 @@ const Category: React.FC = () => {
             loading={loading}
             onChange={handleTableChange} 
           />
-       <ProductModel isOpenIUModal={isOpenIUModal} fetchData={fetchData} handleCancelIUModal={handleCancelIUModal} productid={productid} 
-        initialValues={data?.find(item => item.maChuyenMuc === productid)}
+       <CategoryModel isOpenIUModal={isOpenIUModal} fetchData={fetchData} handleCancelIUModal={handleCancelIUModal} categoryid={categoryid} 
+        initialValues={data?.find(item => item.maChuyenMuc === categoryid)}
         />
-        <ProductModelDelete isOpenDeleteModal={isOpenDeleteModal} fetchData={fetchData} handleCancelDeleteModal={handleCancelDeleteModal} productid={productid} 
-        initialValues={data?.find(item => item.maChuyenMuc === productid)}
+        <CategoryModelDelete isOpenDeleteModal={isOpenDeleteModal} fetchData={fetchData} handleCancelDeleteModal={handleCancelDeleteModal} categoryid={categoryid} 
+        initialValues={data?.find(item => item.maChuyenMuc === categoryid)}
         />
         </>
       );

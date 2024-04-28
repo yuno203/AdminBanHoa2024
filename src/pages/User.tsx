@@ -4,14 +4,12 @@ import { apiSearch } from "../services/user.services";
 import UserType from "../models/user.model";
 import { ColumnsType, TableProps } from "antd/es/table";
 import { TableParams } from "../models/config.model";
-import { Upload, message } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import ProductModel from "../components/ProductModel";
-import ProductModelDelete from "../components/ProductModelDelete";
+import UserModel from "../components/UserModel";
+import UserModelDelete from "../components/UserModelDelete";
 
 
 const User: React.FC = () => {
-  const [productid, setProductid] = useState("");
+  const [userid, setUserid] = useState("");
   const [isOpenIUModal, setIsOpenIUModal] = useState(false);
   const [isOpenDeleteModal, setisOpenDeleteModal] = useState(false);
   const [data, setData] = useState<UserType[]>();
@@ -76,12 +74,12 @@ const User: React.FC = () => {
           width: "120px",
           render: (_, record) => (
             <Flex justify="center" >
-              <Button onClick= {()=> {setIsOpenIUModal(true);setProductid(record.id)}} 
+              <Button onClick= {()=> {setIsOpenIUModal(true);setUserid(record.id)}} 
               >
                 Sửa
               </Button >  
               <Button style={{marginLeft:'5px'}}
-              onClick={() => {setisOpenDeleteModal(true); setProductid(record.id)}}
+              onClick={() => {setisOpenDeleteModal(true); setUserid(record.id)}}
               >
                 Xóa
               </Button>
@@ -121,7 +119,7 @@ const User: React.FC = () => {
               <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
               <Breadcrumb.Item>Quản lý sản phẩm</Breadcrumb.Item>
             </Breadcrumb>
-            <Button type="primary" onClick={() => {setIsOpenIUModal(true); setProductid("")}}>
+            <Button type="primary" onClick={() => {setIsOpenIUModal(true); setUserid("")}}>
             Thêm Mới
           </Button >
         
@@ -134,11 +132,11 @@ const User: React.FC = () => {
             loading={loading}
             onChange={handleTableChange} 
           />
-       <ProductModel isOpenIUModal={isOpenIUModal} fetchData={fetchData} handleCancelIUModal={handleCancelIUModal} productid={productid} 
-        initialValues={data?.find(item => item.id === productid)}
+       <UserModel isOpenIUModal={isOpenIUModal} fetchData={fetchData} handleCancelIUModal={handleCancelIUModal} userid={userid} 
+        initialValues={data?.find(item => item.id === userid)}
         />
-        <ProductModelDelete isOpenDeleteModal={isOpenDeleteModal} fetchData={fetchData} handleCancelDeleteModal={handleCancelDeleteModal} productid={productid} 
-        initialValues={data?.find(item => item.id === productid)}
+        <UserModelDelete isOpenDeleteModal={isOpenDeleteModal} fetchData={fetchData} handleCancelDeleteModal={handleCancelDeleteModal} userid={userid} 
+        initialValues={data?.find(item => item.id === userid)}
         />
         </>
       );

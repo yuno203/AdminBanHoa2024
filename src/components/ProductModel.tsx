@@ -99,7 +99,7 @@
                         <Form.Item
                           label="Mã Sản Phẩm"
                           name="maSanPham"
-                        //   style={{visibility : "hidden"}}
+                          style={{display: "none"}}
                         >
                           <Input />
                       </Form.Item>
